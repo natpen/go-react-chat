@@ -1,0 +1,27 @@
+{
+  "name": "taut",
+  "version": "1.0.0",
+  "description": "Simple Go-backed chat",
+  "repository": "https://github.com/natpen/go-react-chat",
+  "main": "client.js",
+  "scripts": {
+    "build": "./node_modules/browserify/bin/cmd.js -t [ babelify --presets [ react ] ] client.js -o bundle.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Natalie Pendragon",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-react": "^6.11.1",
+    "babelify": "^7.3.0",
+    "browserify": "^13.1.0",
+    "bufferutil": "^1.2.1",
+    "event-emitter": "^0.3.4",
+    "moment": "^2.14.1",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
+    "remarkable": "^1.6.2",
+    "utf-8-validate": "^1.2.1",
+    "uuid": "^2.0.2",
+    "ws": "^1.1.1"
+  }
+}
