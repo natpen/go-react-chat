@@ -8,8 +8,12 @@ import (
 )
 
 func GetUserLastActive(name string) (time.Time, error) {
+	stmt, err := db.Prepare("SELECT last_active FROM users WHERE name = $1")
+	if err != nil {
+		log.Fatal(err)
+	}
 	var lastActive time.Time
-	err := db.QueryRow("SELECT last_active FROM users WHERE name = $1", name).Scan(&lastActive)
+	err = stmt.QueryRow(name).Scan(&lastActive)
 
 	switch {
 	case err == sql.ErrNoRows:
@@ -20,21 +24,33 @@ func GetUserLastActive(name string) (time.Time, error) {
 	default:
 		return lastActive, nil
 	}
-	// TODO: row.close necessary here?
 }
 
-func AddUserOrUpdateLastActive(name string) error {
-	_, err := db.Query(`
+func AddUserOrUpdateLastActive(name string) (int64, error) {
+	stmt, err := db.Prepare(`
     INSERT INTO users (name, last_active)
     VALUES ($1, $2)
     ON CONFLICT (name)
     DO UPDATE SET last_active = $2
-    `, name, time.Now())
-	return err
+  `)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer stmt.Close()
+
+	res, err := stmt.Exec(name, time.Now())
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCount, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return rowCount, err
 }
 
-func StoreMessage(message Message) error {
-	_, err := db.Query(`
+func StoreMessage(message Message) (int64, error) {
+	stmt, err := db.Prepare(`
     INSERT INTO messages (id, user_id, timestamp, text)
     VALUES (
       $1,
@@ -44,8 +60,21 @@ func StoreMessage(message Message) error {
       $3,
       $4
     )
-    `, message.Id, message.Name, message.Timestamp, message.Text)
-	return err
+    `)
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer stmt.Close()
+
+	res, err := stmt.Exec(message.Id, message.Name, message.Timestamp, message.Text)
+	if err != nil {
+		log.Fatal(err)
+	}
+	rowCount, err := res.RowsAffected()
+	if err != nil {
+		log.Fatal(err)
+	}
+	return rowCount, err
 }
 
 func ConvertMessageRowsToMessageArray(rows *sql.Rows) []Message {
