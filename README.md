@@ -1,6 +1,6 @@
 This is a barebones PostgreSQL-backed chat application. The server-side application is written in Go, and the client-side application is written in React. JSX transpilation and client-side dependency concatenation is handled via Browserify, which is wrapped in an npm script. This, along with database initialization/schema management, and all the Golang server-side compilation, etc., is wrapped in a Makefile.
 
-Criticism, questions, suggestions very welcome :) this is my first foray into Go, and the initial release of this project was severely timeboxed, so there are a lot of hacks, straggler TODOs, and minor experimentation to be found!
+Criticism, questions, suggestions very welcome :) this is mostly an excuse to make something with Go for the first time, so it's truly a bastion of hacktastic hackiness.
 
 ### Local Setup
 

@@ -1,11 +1,11 @@
 {
-  "name": "taut",
+  "name": "Go-React-Chat",
   "version": "1.0.0",
   "description": "Simple Go-backed chat",
   "repository": "https://github.com/natpen/go-react-chat",
   "main": "client.js",
   "scripts": {
-    "build": "./node_modules/browserify/bin/cmd.js -t [ babelify --presets [ es2015 react ] ] client.js -o bundle.js",
+    "build": "./node_modules/browserify/bin/cmd.js -t [ babelify --presets [ es2015 react ] ] js/index.js -o bundle.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Natalie Pendragon",
