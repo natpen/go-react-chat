@@ -1,11 +1,13 @@
-var React      = require('react'),
-    ReactDOM   = require('react-dom'),
-    ee         = require('event-emitter'),
-    emitter    = ee({}), listener,
-    moment     = require('moment'),
-    Remarkable = require('remarkable'),
-    uuid       = require('uuid');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import ee from 'event-emitter';
+import moment from 'moment';
+import Remarkable from 'remarkable';
+import uuid from 'uuid';
 
+
+var emitter = ee({});
+var listener;
 var ws;
 
 var ChatBox = React.createClass({
