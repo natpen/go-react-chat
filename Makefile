@@ -1,12 +1,12 @@
-SERVER_OUT := taut
-DB_INIT_OUT := dbInit
+SERVER_OUT := go-react-chat
+DB_INIT_OUT := db-init
 
 run: build.server build.client
 	./build/${SERVER_OUT}
 
 build.db:
-	cd dbInit && \
-	go build -v -o ../build/${DB_INIT_OUT}
+	cd server/db-init && \
+	go build -v -o ../../build/${DB_INIT_OUT}
 
 build.client:
 	cd client && \
@@ -14,8 +14,8 @@ build.client:
 	npm run build
 
 build.server:
-	cd server && \
-	go build -i -v -o ../build/${SERVER_OUT}
+	cd server/go-react-chat && \
+	go build -i -v -o ../../build/${SERVER_OUT}
 
 install.go_deps:
 	go get github.com/gorilla/websocket && \

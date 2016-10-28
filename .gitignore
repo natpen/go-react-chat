@@ -1,8 +1,5 @@
-*.exe
-~presentation/
 .env
-taut
-taut_schema.txt
+build/
+
 node_modules
 bundle.js
-build/

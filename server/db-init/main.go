@@ -24,7 +24,7 @@ func main() {
 		os.Getenv("DATABASE_URL"),
 		"-a",
 		"-f",
-		"./dbInit/dbInit.sql",
+		"./server/db-init/db-init.sql",
 	}
 
 	env := os.Environ()

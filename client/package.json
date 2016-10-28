@@ -1,6 +1,6 @@
 {
   "name": "Go-React-Chat",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "Simple Go-backed chat",
   "repository": "https://github.com/natpen/go-react-chat",
   "main": "client.js",
